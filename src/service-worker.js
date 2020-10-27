@@ -11,6 +11,7 @@ workbox.core.skipWaiting();
 
 workbox.precaching.precacheAndRoute([
       { url: 'index.html', revision: '1' },
+      { url: 'article.html', revision: '1' },
       { url: 'index.js', revision: '1' },
       { url: 'team.js', revision: '1' },
 ], self.__WB_MANIFEST);
