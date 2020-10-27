@@ -84,9 +84,6 @@ workbox.routing.registerRoute(
             plugins: [
                   new workbox.cacheableResponse.CacheableResponsePlugin({
                         statuses: [0, 200],
-                        headers: {
-                              'X-Is-Cacheable': 'true',
-                        },
                         maxEntries: 60,
                         maxAgeSeconds: 30 * 24 * 60 * 60,
                   }),
@@ -126,9 +123,6 @@ workbox.routing.registerRoute(
             plugins: [
                   new workbox.cacheableResponse.CacheableResponsePlugin({
                         statuses: [0, 200],
-                        headers: {
-                              'X-Is-Cacheable': 'true',
-                        },
                   }),
             ],
       })
