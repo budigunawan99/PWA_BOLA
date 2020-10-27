@@ -1,4 +1,5 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+import 'regenerator-runtime';
 
 if (workbox)
       console.log(`Workbox berhasil dimuat`);
@@ -104,6 +105,18 @@ workbox.routing.registerRoute(
       })
 );
 
+const ignoreQueryStringPlugin = {
+      cachedResponseWillBeUsed: async ({ request, cachedResponse }) => {
+            console.log(request.url);
+            if (cachedResponse) {
+                  return cachedResponse;
+            }
+
+            // this will match same url/diff query string where the original failed
+            return caches.match(request.url, { ignoreSearch: true });
+      }
+};
+
 workbox.routing.registerRoute(
       new RegExp('/article.html'),
       new workbox.strategies.StaleWhileRevalidate({
@@ -112,6 +125,7 @@ workbox.routing.registerRoute(
                   new workbox.cacheableResponse.CacheableResponsePlugin({
                         statuses: [0, 200],
                   }),
+                  ignoreQueryStringPlugin,
             ],
       })
 );
