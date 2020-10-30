@@ -1,6 +1,6 @@
 import "../../asset/img/default.svg";
 
-class ArticleHome extends HTMLElement {
+class StandingList extends HTMLElement {
       constructor() {
             super();
             this._shadowRoot = this.attachShadow({ mode: "open" });
@@ -54,7 +54,7 @@ class ArticleHome extends HTMLElement {
                   item.innerHTML = `
                         <td>${list.position}</td>
                         <td>
-                              <a href="./article.html?id=${list.team.id}">
+                              <a href="./team.html?id=${list.team.id}">
                                     <img src="${image}" loading="lazy" width=20 alt="team-logo" onerror="this.onerror = null; this.src='./asset/img/default.svg';" />  ${list.team.name}
                               </a>
                         </td>
@@ -79,4 +79,4 @@ class ArticleHome extends HTMLElement {
       }
 }
 
-customElements.define('article-home', ArticleHome);
+customElements.define('standing-list', StandingList);

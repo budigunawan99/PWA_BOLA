@@ -1,6 +1,6 @@
 import loader from "../view/loader.js";
 
-class DataArticle {
+class DataResource {
       API_TOKEN = "acfc18d2e6774a5fab43503c701d328e";
       base_url = "https://api.football-data.org/v2/";
       league_id = 2021;
@@ -94,4 +94,4 @@ class DataArticle {
 
 }
 
-export default DataArticle;
+export default DataResource;

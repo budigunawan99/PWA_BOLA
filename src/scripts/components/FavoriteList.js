@@ -1,5 +1,5 @@
-import './ArticleSavedItem.js';
-class ArticleSaved extends HTMLElement {
+import './FavoriteListItem.js';
+class FavoriteList extends HTMLElement {
       constructor() {
             super();
             this._shadowRoot = this.attachShadow({ mode: "open" });
@@ -16,7 +16,7 @@ class ArticleSaved extends HTMLElement {
             `;
 
             this._lists.forEach(list => {
-                  const item = document.createElement('article-saved-item');
+                  const item = document.createElement('favorite-list-item');
                   item.list = list
                   this._shadowRoot.appendChild(item);
             })
@@ -32,4 +32,4 @@ class ArticleSaved extends HTMLElement {
       }
 }
 
-customElements.define('article-saved', ArticleSaved);
+customElements.define('favorite-list', FavoriteList);

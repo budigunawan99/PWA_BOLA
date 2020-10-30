@@ -46,7 +46,7 @@ nav a {
   z-index: 1;
 }
 
-#articles {
+#standingPage {
   padding: 30px;
 }
 
@@ -123,7 +123,7 @@ hr {
   .header-jumbotron {
     padding: 40px;
   }
-  #articles {
+  #standingPage {
     padding: 10px;
   }
   #banner img {

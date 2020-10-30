@@ -1,11 +1,11 @@
-import "../components/ArticleSaved.js";
+import "../components/FavoriteList.js";
 import DataModel from "../data/data-model.js";
-import loader from "../view/loader.js";
+import loader from "./loader.js";
 import "../../asset/img/nodata.jpg";
 
 
-const save = () => {
-      const articlelist = document.querySelector("article-saved");
+const favorite = () => {
+      const favoritelist = document.querySelector("favorite-list");
 
       const model = new DataModel();
       const runResult = () => {
@@ -22,14 +22,14 @@ const save = () => {
       }
 
       const successResult = results => {
-            articlelist.lists = results;
+            favoritelist.lists = results;
             loader(false);
             console.log(results);
       };
 
       const rejectedResult = message => {
             console.log(message)
-            articlelist.renderErr(message);
+            favoritelist.renderErr(message);
             loader(false);
       };
       let results = runResult();
@@ -50,4 +50,4 @@ const save = () => {
       
 }
 
-export default save;
+export default favorite;

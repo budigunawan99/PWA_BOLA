@@ -1,4 +1,4 @@
-class ArticleTeam extends HTMLElement {
+class DetailTeam extends HTMLElement {
       constructor() {
             super();
             this._shadowRoot = this.attachShadow({ mode: "open" });
@@ -15,7 +15,7 @@ class ArticleTeam extends HTMLElement {
             this._shadowRoot.innerHTML = `
                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">                 
                   <style>
-                        .article{
+                        .detail{
                               padding: 30px;
                         }
 
@@ -107,7 +107,7 @@ class ArticleTeam extends HTMLElement {
                   </style>
 
                   
-                        <div class="article">
+                        <div class="detail">
                               <h2>${this._list.name}</h2>
                               <hr>
                               <div class="card horizontal">
@@ -146,7 +146,7 @@ class ArticleTeam extends HTMLElement {
             this._shadowRoot.innerHTML = "";
             this._shadowRoot.innerHTML += `
                   <style>
-                        .article{
+                        .detail{
                               padding: 30px;
                               text-align: center
                         }
@@ -159,11 +159,11 @@ class ArticleTeam extends HTMLElement {
                               color: red;
                         }
                   </style>
-                  <div class="article">
+                  <div class="detail">
                         <h5>${message}</h5>
                   </div>     
                   `;
       }
 
 }
-customElements.define('article-team', ArticleTeam)
+customElements.define('detail-team', DetailTeam)

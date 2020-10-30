@@ -1,24 +1,24 @@
 import "../../asset/css/custom.css";
 import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js";
-import DataArticle from "../data/data-article.js";
+import DataResource from "../data/data-resource.js";
 import DataModel from "../data/data-model.js";
-import "../components/ArticleTeam.js";
+import "../components/DetailTeam.js";
 import "../components/FooterNav.js";
 import loader from "../view/loader.js";
 
 const team = () => {
       let urlParams = new URLSearchParams(window.location.search);
       let idParam = urlParams.get("id");
-      const articlelist = document.querySelector("article-team");
+      const detailteam = document.querySelector("detail-team");
 
       const btnSave = document.getElementById("save");
       const btnDelete = document.getElementById("delete");
 
-      const dataarticle = new DataArticle();
+      const dataresource = new DataResource();
       const runResult = () => {
             return new Promise((resolve, reject) => {
-                  dataarticle.getTeamById(idParam)
+                  dataresource.getTeamById(idParam)
                         .then((results) => {
                               successResult(results);
                               resolve(results);
@@ -30,7 +30,7 @@ const team = () => {
       }
 
       const successResult = results => {
-            articlelist.list = results;
+            detailteam.list = results;
             console.log(results);
             loader(false);
       };
@@ -38,7 +38,7 @@ const team = () => {
       const rejectedResult = message => {
             console.log(message);
             btnSave.style.display = 'none';
-            articlelist.renderErr(message);
+            detailteam.renderErr(message);
             loader(false);
       };
 
@@ -47,8 +47,8 @@ const team = () => {
       let model = new DataModel();
 
       model.check(idParam)
-            .then((article) => {
-                  if (typeof article !== 'undefined') {
+            .then((data) => {
+                  if (typeof data !== 'undefined') {
                         btnSave.style.display = 'none';
                   } else {
                         btnDelete.style.display = 'none';

@@ -30,8 +30,8 @@ class DataModel {
                         const tx = db.transaction("team", "readonly");
                         const store = tx.objectStore("team");
                         return store.getAll();
-                  }).then((articles) => {
-                        resolve(articles);
+                  }).then((data) => {
+                        resolve(data);
                   });
             });
       }
@@ -44,9 +44,9 @@ class DataModel {
                               let store = tx.objectStore("team");
                               return store.get(parseInt(id));
                         })
-                        .then((article) => {
-                              console.log(article)
-                              resolve(article);
+                        .then((data) => {
+                              console.log(data)
+                              resolve(data);
                         });
             })
       }

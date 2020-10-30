@@ -1,5 +1,4 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-import 'regenerator-runtime';
 
 if (workbox)
       console.log(`Workbox berhasil dimuat`);
@@ -11,10 +10,13 @@ workbox.core.skipWaiting();
 
 workbox.precaching.precacheAndRoute([
       { url: 'index.html', revision: '1' },
-      { url: 'article.html', revision: '1' },
+      { url: 'team.html', revision: '1' },
       { url: 'index.js', revision: '1' },
       { url: 'team.js', revision: '1' },
-], self.__WB_MANIFEST);
+], {
+      // Ignore all URL parameters.
+      ignoreURLParametersMatching: [/.*/]
+}, self.__WB_MANIFEST);
 
 workbox.routing.registerRoute(
       /\.(?:json)$/,
@@ -24,63 +26,19 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
-      new RegExp('/asset/css/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'css'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/asset/js/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'js'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/background/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'background'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/layouts/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'layouts'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/data/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'data'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/view/'),
-      new workbox.strategies.CacheFirst({
-            cacheName: 'view'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('/pages/'),
+      ({url}) => url.origin === 'https://cdnjs.cloudflare.com',
       new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'pages'
+            cacheName: 'cdn-asset',
+            plugins: [
+                  new workbox.cacheableResponse.CacheableResponsePlugin({
+                        statuses: [0, 200],
+                  }),
+            ],
       })
 );
 
 workbox.routing.registerRoute(
-      new RegExp('/components/'),
-      new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'components'
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('https://crests.football-data.org/'),
+      ({url}) => url.origin === 'https://crests.football-data.org',
       new workbox.strategies.CacheFirst({
             cacheName: 'url-images',
             plugins: [
@@ -93,48 +51,11 @@ workbox.routing.registerRoute(
       }),
 );
 
-workbox.routing.registerRoute(
-      new RegExp('https://api.football-data.org/v2/competitions/2021/standings'),
-      new workbox.strategies.NetworkFirst({
-            networkTimeoutSeconds: 3,
-            cacheName: 'standings',
-            plugins: [
-                  new workbox.cacheableResponse.CacheableResponsePlugin({
-                        statuses: [0, 200],
-                  }),
-            ],
-      })
-);
-
-const ignoreQueryStringPlugin = {
-      cachedResponseWillBeUsed: async ({ request, cachedResponse }) => {
-            console.log(request.url);
-            if (cachedResponse) {
-                  return cachedResponse;
-            }
-
-            // this will match same url/diff query string where the original failed
-            return caches.match(request.url, { ignoreSearch: true });
-      }
-};
 
 workbox.routing.registerRoute(
-      new RegExp('/article.html'),
+      ({url}) => url.origin === 'https://api.football-data.org',
       new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'articles',
-            plugins: [
-                  new workbox.cacheableResponse.CacheableResponsePlugin({
-                        statuses: [0, 200],
-                  }),
-                  ignoreQueryStringPlugin,
-            ],
-      })
-);
-
-workbox.routing.registerRoute(
-      new RegExp('https://api.football-data.org/v2/teams'),
-      new workbox.strategies.StaleWhileRevalidate({
-            cacheName: 'teams',
+            cacheName: 'api',
             plugins: [
                   new workbox.cacheableResponse.CacheableResponsePlugin({
                         statuses: [0, 200],

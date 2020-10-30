@@ -1,8 +1,8 @@
-import main from "./main.js";
-import save from "./save.js";
+import home from "./home.js";
+import favorite from "./favorite.js";
 import htmlNav from '../../layouts/nav.html';
-import home from '../../pages/home.html';
-import favorite from '../../pages/favorite.html';
+import homeHtml from '../../pages/home.html';
+import favoriteHtml from '../../pages/favorite.html';
 
 
 const navigation = () => {
@@ -39,11 +39,11 @@ const navigation = () => {
             let content = document.querySelector("#body-content");
 
             if (page === "home") {
-                  content.innerHTML = home;
-                  main();
+                  content.innerHTML = homeHtml;
+                  home();
             } else if (page === "favorite") {
-                  content.innerHTML = favorite;
-                  save();
+                  content.innerHTML = favoriteHtml;
+                  favorite();
             }
       }
 

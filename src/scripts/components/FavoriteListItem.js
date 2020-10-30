@@ -1,6 +1,6 @@
 import DataModel from "../data/data-model.js";
 
-class ArticleSavedItem extends HTMLElement {
+class FavoriteListItem extends HTMLElement {
       constructor() {
             super();
             this._shadowRoot = this.attachShadow({ mode: "open" });
@@ -139,4 +139,4 @@ class ArticleSavedItem extends HTMLElement {
 
 }
 
-customElements.define('article-saved-item', ArticleSavedItem)
+customElements.define('favorite-list-item', FavoriteListItem)
