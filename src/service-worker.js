@@ -13,6 +13,8 @@ workbox.precaching.precacheAndRoute([
       { url: 'team.html', revision: '1' },
       { url: 'index.js', revision: '1' },
       { url: 'team.js', revision: '1' },
+      { url: 'asset/img/default.svg', revision: '1' },
+      { url: 'asset/img/nodata.jpg', revision: '1' },
 ], {
       // Ignore all URL parameters.
       ignoreURLParametersMatching: [/.*/]
