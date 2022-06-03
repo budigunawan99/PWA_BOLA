@@ -1,0 +1,25 @@
+{
+  "icons": [
+    {
+      "src": "./icon_512x512.1687b04f016e3ea9b05a0896854756fa.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon_192x192.0d0e6e8311b45d947871eab269fed4e9.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "name": "Premiere League Standings",
+  "short_name": "PLeague",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./index.html",
+  "description": "The Greatest League in The World",
+  "background_color": "#69f0ae",
+  "theme_color": "#69f0ae",
+  "scope": "."
+}
